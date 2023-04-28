@@ -21,29 +21,29 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model('Person', personSchema)
 
 if (process.argv.length==3) {
-    console.log('argv == 3')
-    Person
+  console.log('argv == 3')
+  Person
     .find({})
     .then(persons => {
-        persons.forEach(person => {
-            console.log(person)
-        })
-        mongoose.connection.close()
+      persons.forEach(person => {
+        console.log(person)
+      })
+      mongoose.connection.close()
     })
 }
 
 if (process.argv.length==5) {
-    console.log('argv == 5')
-    const nimi = process.argv[3]
-    const numero = process.argv[4]
+  console.log('argv == 5')
+  const nimi = process.argv[3]
+  const numero = process.argv[4]
 
-    const person = new Person({
-        name: nimi,
-        number: numero,
-    })
+  const person = new Person({
+    name: nimi,
+    number: numero,
+  })
 
-    person.save().then(result => {
-        console.log('person saved!')
-        mongoose.connection.close()
-    })
+  person.save().then(() => {
+    console.log('person saved!')
+    mongoose.connection.close()
+  })
 }
